@@ -1,32 +1,23 @@
 package com.activecode.shuttletracker.navigation;
 
 import android.app.Activity;
+import android.os.Build;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
+import com.activecode.shuttletracker.BuildConfig;
 import com.activecode.shuttletracker.R;
 
 /**
  * Created by alxarguello on 1/25/16.
  */
-public abstract class UXNavigation {
+public final class UXNavigation {
 
-    private static UserNavigation userNavigation;
 
-    public static UXNavigation getInstance(Class<UserNavigation> userNavigationClass) {
+    private String demo;
 
-        try {
-            if (userNavigation == null) {
-                userNavigation = userNavigationClass.newInstance();
-            }
-        }catch(IllegalAccessException e){
-        }catch(InstantiationException e){
-        }
-        return userNavigation;
-    }
-
-    public boolean onNavigationItemSelected(Activity context, MenuItem item){
+    public static boolean onNavigationItemSelected(Activity context, MenuItem item){
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -42,6 +33,12 @@ public abstract class UXNavigation {
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+
+    public String isDemo(){
+        demo  = Boolean.toString(BuildConfig.FLAVOR == "demo");
+        return demo;
     }
 
 }

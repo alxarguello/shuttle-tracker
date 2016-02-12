@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.activecode.shuttletracker.navigation.UXNavigation;
-import com.activecode.shuttletracker.navigation.UserNavigation;
 
 /**
  * Created by alxarguello on 1/25/16.
@@ -83,9 +82,7 @@ public class BaseActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-        UserNavigation.getInstance();
-        return UXNavigation.getInstance(UserNavigation.class).onNavigationItemSelected(this,item);
+        return UXNavigation.onNavigationItemSelected(this,item);
     }
 
 
